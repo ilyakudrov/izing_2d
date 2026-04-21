@@ -277,21 +277,21 @@ get_polynom_sizes_border(const PolynomZW<CoefType> &polynom,
   return polynom_sizes;
 }
 
-template <typename CoefType>
-void add_w_power(Polynom<CoefType> &polynom_result,
-                 const Polynom<CoefType> &other_polynom,
+template <typename CoefType1, typename CoefType2>
+void add_w_power(Polynom<CoefType2> &polynom_result,
+                 const Polynom<CoefType1> &other_polynom,
                  const std::size_t w_power) {
-  for (int i = 0; i < other_polynom.size(); i++) {
+  for (std::size_t i = 0; i < other_polynom.size(); i++) {
     polynom_result.polynom[i + w_power] += other_polynom.polynom[i];
   }
 }
 
-template <typename CoefType>
-void add_zw_power(PolynomZW<CoefType> &polynom_result,
-                  const PolynomZW<CoefType> &other_polynom,
+template <typename CoefType1, typename CoefType2>
+void add_zw_power(PolynomZW<CoefType2> &polynom_result,
+                  const PolynomZW<CoefType1> &other_polynom,
                   const std::size_t z_power, const std::size_t w_power) {
-  for (int i = 0; i < other_polynom.size(); i++) {
-    add_w_power<CoefType>(polynom_result.polynom[i + z_power], other_polynom[i],
-                          w_power);
+  for (std::size_t i = 0; i < other_polynom.size(); i++) {
+    add_w_power<CoefType1, CoefType2>(polynom_result.polynom[i + z_power],
+                                      other_polynom[i], w_power);
   }
 }

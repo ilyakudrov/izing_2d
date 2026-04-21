@@ -265,9 +265,9 @@ void test_add_multiply_w_power_optimized() {
   vec1 = {4, 3, 5, 1, 1};
   vec2 = {1, 3, 2, 4};
   vec3 = std::vector<unsigned short>(11);
-  PolynomOptimized<unsigned short> polynom_optimized1(vec1, 6);
-  PolynomOptimized<unsigned short> polynom_optimized2(vec2, 2);
-  PolynomOptimized<unsigned short> polynom_optimized3(vec3, 4);
+  PolynomOptimized<unsigned short> polynom_optimized1(6, vec1);
+  PolynomOptimized<unsigned short> polynom_optimized2(2, vec2);
+  PolynomOptimized<unsigned short> polynom_optimized3(4, vec3);
   add_multiply_w_power(polynom_optimized3, polynom_optimized2,
                        polynom_optimized1, static_cast<unsigned short>(2));
   std::vector<unsigned short> polynom_optimized_result =
