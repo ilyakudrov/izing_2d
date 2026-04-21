@@ -15,7 +15,20 @@
 // #define POLYNOMZW PolynomZW
 // #define POLYNOM Polynom
 #define COEF_TYPE1 unsigned short
-#define COEF_TYPE2 unsigned long long
+// #define COEF_TYPE2 unsigned long long
+#define COEF_TYPE2 __uint128_t
+
+std::ostream &operator<<(std::ostream &os, __uint128_t n) {
+  if (n == 0)
+    return os << "0";
+  std::string s;
+  while (n > 0) {
+    s += (char)('0' + (n % 10));
+    n /= 10;
+  }
+  std::reverse(s.begin(), s.end());
+  return os << s;
+}
 
 size_t get_full_index(const size_t index) {
   std::bitset<8> a(index);
