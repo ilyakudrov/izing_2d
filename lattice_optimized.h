@@ -1144,21 +1144,21 @@ PolynomZWOptimized<CoefType2> polynom_border_periodic_square_from_rectangle2(
   size_t place1, place2;
   CoefType2 z_power, w_power;
   std::size_t progress = 0;
-  // std::size_t total = spin_combinations * spin_combinations *
-  //                     spin_combinations * spin_combinations;
-  std::size_t total = spin_combinations1 * spin_combinations1 *
-                      spin_combinations1 * spin_combinations1;
+  std::size_t total = spin_combinations * spin_combinations *
+                      spin_combinations * spin_combinations;
+  // std::size_t total = spin_combinations1 * spin_combinations1 *
+  //                     spin_combinations1 * spin_combinations1;
 #pragma omp parallel for collapse(4) private(place1, place2, z_power, w_power) \
     firstprivate(spin_combinations, total) shared(progress)                    \
     reduction(polynom_plus : polynom_result) schedule(dynamic)
-  // for (std::size_t i = 0; i < spin_combinations; i++) {
-  //   for (std::size_t j = 0; j < spin_combinations; j++) {
-  //     for (std::size_t k = 0; k < spin_combinations; k++) {
-  //       for (std::size_t l = 0; l < spin_combinations; l++) {
-  for (std::size_t i = 0; i < spin_combinations1; i++) {
-    for (std::size_t j = 0; j < spin_combinations1; j++) {
-      for (std::size_t k = 0; k < spin_combinations1; k++) {
-        for (std::size_t l = 0; l < spin_combinations1; l++) {
+  for (std::size_t i = 0; i < spin_combinations; i++) {
+    for (std::size_t j = 0; j < spin_combinations; j++) {
+      for (std::size_t k = 0; k < spin_combinations; k++) {
+        for (std::size_t l = 0; l < spin_combinations; l++) {
+          // for (std::size_t i = 0; i < spin_combinations1; i++) {
+          //   for (std::size_t j = 0; j < spin_combinations1; j++) {
+          //     for (std::size_t k = 0; k < spin_combinations1; k++) {
+          //       for (std::size_t l = 0; l < spin_combinations1; l++) {
 #pragma omp atomic
           progress++;
           if (omp_get_thread_num() == 0 && progress % 1000 == 0) {
